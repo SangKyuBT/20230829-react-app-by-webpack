@@ -1,6 +1,7 @@
 const path = require( 'path' )
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' )
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' )
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' )
 
 const appDir = process.cwd()
 const getAbsolutePath = pathDir => path.resolve( appDir, pathDir )
@@ -32,7 +33,11 @@ module.exports = ( webpackEnv  ) => {
           '**/*',
           getAbsolutePath( 'dist/**/*' ) // dist 폴더 안의 모든 것을 지우도록 설정
         ]
-      })
+      }),
+      new MiniCssExtractPlugin( {
+        filename: 'assets/css/[name].[contenthash:8].css',
+        chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
+      } ),
     ],
     module: {
       rules: [
@@ -50,7 +55,14 @@ module.exports = ( webpackEnv  ) => {
               }
             }
           ]
-        }
+        },
+        {
+          test: /\.css$/i,
+          use: [
+            isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+            'css-loader',
+          ],
+        },
       ]
     }
   }
