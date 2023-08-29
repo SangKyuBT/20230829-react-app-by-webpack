@@ -3,7 +3,9 @@ const path = require( 'path' )
 const appDir = process.cwd()
 const getAbsolutePath = pathDir => path.resolve( appDir, pathDir )
 
-module.exports = () => {
+module.exports = ( webpackEnv  ) => {
+  const isProd = webpackEnv === 'production'
+
   return {
     entry: { //프로젝트의 진입점(entry point)
       main: './src/index.js',
@@ -12,6 +14,25 @@ module.exports = () => {
       path: getAbsolutePath( 'dist' ),
       filename: 'assets/js/[name].[contenthash:8].js',
       publicPath: '/',
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                cacheDirectory: true,
+                cacheCompression: false,
+                configFile: getAbsolutePath( 'config/babel.config.js' ),
+                envName: isProd ? 'production' : 'development'
+              }
+            }
+          ]
+        }
+      ]
     }
   }
 }
