@@ -1,0 +1,31 @@
+.app {
+  color: red;
+}
+
+.black {
+  font-weight: 900;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.thin {
+  font-weight: 100;
+}
+
+img {
+  width: 450px;
+}
