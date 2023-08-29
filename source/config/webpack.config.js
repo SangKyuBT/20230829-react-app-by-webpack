@@ -39,8 +39,10 @@ module.exports = ( webpackEnv  ) => {
         filename: 'assets/css/[name].[contenthash:8].css',
         chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
       } ),
-      new webpack.EnvironmentPlugin( {
-        NODE_ENV: isProd ? 'production' : 'development'
+      new webpack.DefinePlugin( {
+        'process.env': {
+          'NODE_ENV': JSON.stringify( isProd ? 'production' : 'development' )
+        } 
       } ),
     ],
     module: {
