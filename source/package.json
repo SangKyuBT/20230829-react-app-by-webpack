@@ -4,6 +4,7 @@
   "description": "Configure React Project Using Webpack",
   "main": "index.js",
   "scripts": {
+    "dev": "node scripts/devServer.js",
     "build": "node scripts/build.js"
   },
   "author": "",
