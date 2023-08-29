@@ -1,4 +1,5 @@
 const path = require( 'path' )
+const HtmlWebpackPlugin = require( 'html-webpack-plugin' )
 
 const appDir = process.cwd()
 const getAbsolutePath = pathDir => path.resolve( appDir, pathDir )
@@ -15,6 +16,12 @@ module.exports = ( webpackEnv  ) => {
       filename: 'assets/js/[name].[contenthash:8].js',
       publicPath: '/',
     },
+    plugins: [ //빌드 과정을 확장, 추가 기능을 제공한다.
+      new HtmlWebpackPlugin( {
+        template: getAbsolutePath( 'public/index.html' ),
+        inject: true
+      } )
+    ],
     module: {
       rules: [
         {
