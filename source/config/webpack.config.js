@@ -19,6 +19,16 @@ module.exports = ( webpackEnv  ) => {
       filename: 'assets/js/[name].[contenthash:8].js',
       publicPath: '/',
     },
+    resolve: { //모듈을 해석하고 찾는 방식
+      extensions: ['.js', '.jsx', '.json'],
+      alias: {
+        '@components': getAbsolutePath( 'src/components/' ),
+        '@contexts': getAbsolutePath( 'src/contexts/' ),
+        '@hooks': getAbsolutePath( 'src/hooks/' ),
+        '@pages': getAbsolutePath( 'src/pages/' ),
+        '@assets': getAbsolutePath( 'src/assets/' )
+      },
+    },
     plugins: [ //빌드 과정을 확장, 추가 기능을 제공한다.
       new HtmlWebpackPlugin( {
         template: getAbsolutePath( 'public/index.html' ),
