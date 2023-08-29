@@ -63,6 +63,22 @@ module.exports = ( webpackEnv  ) => {
             'css-loader',
           ],
         },
+        // 이미지 로더
+        {
+          test: /\.(jpe?g|png|gif)$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: './assets/images/[name][hash:8][ext]',
+          },
+        },
+        // 웹폰트 로더
+        {
+          test: /\.(woff|woff2|eot|ttf|otf)$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: './assets/fonts/[name][hash:8][ext]',
+          },
+        }
       ]
     }
   }
