@@ -1,5 +1,6 @@
 const path = require( 'path' )
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' )
+const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' )
 
 const appDir = process.cwd()
 const getAbsolutePath = pathDir => path.resolve( appDir, pathDir )
@@ -20,7 +21,18 @@ module.exports = ( webpackEnv  ) => {
       new HtmlWebpackPlugin( {
         template: getAbsolutePath( 'public/index.html' ),
         inject: true
-      } )
+      } ),
+      new CleanWebpackPlugin({
+        // dry 기본 값: false
+        // dry: true,
+        // verbose 기본 값: false
+        verbose: true,
+        // cleanOnceBeforeBuildPatterns 기본 값: ['**/*']
+        cleanOnceBeforeBuildPatterns: [
+          '**/*',
+          getAbsolutePath( 'dist/**/*' ) // dist 폴더 안의 모든 것을 지우도록 설정
+        ]
+      })
     ],
     module: {
       rules: [
