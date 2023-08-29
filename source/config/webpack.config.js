@@ -19,6 +19,7 @@ module.exports = ( webpackEnv  ) => {
       filename: 'assets/js/[name].[contenthash:8].js',
       publicPath: '/',
     },
+    mode: isProd ? 'production' : 'development',
     resolve: { //모듈을 해석하고 찾는 방식
       extensions: ['.js', '.jsx', '.json'],
       alias: {
