@@ -35,7 +35,7 @@ module.exports = ( webpackEnv  ) => {
         template: getAbsolutePath( 'public/index.html' ),
         inject: true
       } ),
-      new CleanWebpackPlugin( {
+      isProd && new CleanWebpackPlugin( {
         // dry 기본 값: false
         // dry: true,
         // verbose 기본 값: false
@@ -46,7 +46,7 @@ module.exports = ( webpackEnv  ) => {
           getAbsolutePath( 'dist/**/*' ) // dist 폴더 안의 모든 것을 지우도록 설정
         ]
       } ),
-      new MiniCssExtractPlugin( {
+      isProd && new MiniCssExtractPlugin( {
         filename: 'assets/css/[name].[contenthash:8].css',
         chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
       } ),
