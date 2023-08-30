@@ -20,6 +20,7 @@ module.exports = ( webpackEnv  ) => {
       publicPath: '/',
     },
     mode: isProd ? 'production' : 'development',
+    devtool: !isProd && 'eval-source-map', //소스맵을 생성하고 제어하기 위한 설정 
     resolve: { //모듈을 해석하고 찾는 방식
       extensions: ['.js', '.jsx', '.json'],
       alias: {
