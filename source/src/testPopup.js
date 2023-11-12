@@ -5,7 +5,6 @@ function TestPopup() {
   const closePopup = useClosePopup()
   
   function t() {
-    console.log( 'asdasdasd' )
     closePopup()
   }
   

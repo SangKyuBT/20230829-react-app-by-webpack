@@ -2,14 +2,20 @@ import img from '@assets/images/bt_trust_me.jpg'
 import PopupAnchor, { useOpenPopup } from './popupManager'
 import TestPopup from './testPopup'
 
+import jsBridge from './jsBridge'
+
 function App() {
   const openPopup = useOpenPopup()
 
-  function tt() {
-    openPopup( TestPopup, {}, { fullscreen: true } ).promise
+  function handelClick() {
+    const test = 'handelClick handelClick handelClick handelClick handelClick'
+    jsBridge
+      .callbackTestAsync( 'asdasdasdasdasd', function( res ) { 
+        alert( test )
+      } )
   }
 
-  console.log( window )
+ 
   
   return (
     <div className="app">
@@ -20,8 +26,7 @@ function App() {
       <div className="light">React App 매뉴얼 구성</div>
       <div className="thin">React App 매뉴얼 구성</div>
       <img src={img}/>
-      <button onClick={tt}>openPopup</button>
-
+      <button onClick={handelClick}>openPopup</button>
       <PopupAnchor></PopupAnchor>
     </div>
   )
