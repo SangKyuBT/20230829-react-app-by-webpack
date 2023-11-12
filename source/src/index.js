@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom/client'
 import '@assets/css/font.css'
 import './index.css'
 
-console.log( process.env )
-
 import App from './app'
 
 //DOM 노드
